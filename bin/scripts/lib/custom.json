@@ -1,0 +1,13 @@
+{
+  "fonts": [
+    {
+      "unpatchedName": "Monaco",
+      "patchedName": "Monaco",
+      "folderName": "Monaco",
+      "imagePreviewFont": "Monaco Nerd Font",
+      "linkPreviewFont": "monaco",
+      "description": "Monaco Nerd Font"
+    }
+  ]
+}
+  
