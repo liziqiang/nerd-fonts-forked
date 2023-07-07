@@ -32,7 +32,7 @@ jobs:
       # Faster version instead of - uses: actions/checkout@v3
       - uses: Bhacaz/checkout-files@v2
         with:
-          files: package.json bin/scripts/get-font-names-from-json.sh bin/scripts/lib/fonts.json
+          files: package.json bin/scripts/get-font-names-from-json.sh bin/scripts/lib/custom.json
           branch: ${{ github.head_ref || github.ref_name }}
 
       - name: Determine font matrix
