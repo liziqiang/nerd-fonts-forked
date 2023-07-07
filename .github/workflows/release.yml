@@ -41,6 +41,7 @@ jobs:
           cd -- $GITHUB_WORKSPACE/bin/scripts/
           chmod u+x get-font-names-from-json.sh
           fontNames=$(./get-font-names-from-json.sh)
+          echo $(ls lib)
           echo "${fontNames}"
           echo "matrix=${fontNames}" >> $GITHUB_OUTPUT
 
