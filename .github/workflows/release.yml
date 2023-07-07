@@ -235,37 +235,37 @@ jobs:
             patched-fonts/${{ matrix.font }}
             LICENSE
 
-  # release-font-patcher:
-  #   name: Archive font patcher and add to release
-  #   needs: [ setup-fonts-matrix, build ]
+  release-font-patcher:
+    name: Archive font patcher and add to release
+    needs: [ setup-fonts-matrix, build ]
 
-  #   env:
-  #     GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-  #     GITHUB_TOKEN: ${{ secrets.TOKEN }}
-  #     RELEASE_VERSION: ${{ needs.setup-fonts-matrix.outputs.rel_version }}
-  #     RELEASE_CANDIDATE: ${{ needs.setup-fonts-matrix.outputs.rel_candidate }}
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      RELEASE_VERSION: ${{ needs.setup-fonts-matrix.outputs.rel_version }}
+      RELEASE_CANDIDATE: ${{ needs.setup-fonts-matrix.outputs.rel_candidate }}
 
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Bump version for source files
-  #       run: |
-  #         cd -- "$GITHUB_WORKSPACE/bin/scripts"
-  #         ./version-bump.sh "$RELEASE_VERSION"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Bump version for source files
+        run: |
+          cd -- "$GITHUB_WORKSPACE/bin/scripts"
+          ./version-bump.sh "$RELEASE_VERSION"
 
-  #     - name: Archive font-patcher script for release
-  #       run: |
-  #         cd -- "$GITHUB_WORKSPACE/bin/scripts"
-  #         ./archive-font-patcher.sh
+      - name: Archive font-patcher script for release
+        run: |
+          cd -- "$GITHUB_WORKSPACE/bin/scripts"
+          ./archive-font-patcher.sh
 
-  #     - name: Upload font-patcher archive for release
-  #       uses: softprops/action-gh-release@v0.1.15
-  #       if: needs.setup-fonts-matrix.outputs.rel_upload == 'true'
-  #       with:
-  #         draft: true
-  #         prerelease: ${{ env.RELEASE_CANDIDATE != 'false' }}
-  #         tag_name: "v${{ env.RELEASE_VERSION }}"
-  #         files: archives/*
+      - name: Upload font-patcher archive for release
+        uses: softprops/action-gh-release@v0.1.15
+        if: needs.setup-fonts-matrix.outputs.rel_upload == 'true'
+        with:
+          draft: true
+          prerelease: ${{ env.RELEASE_CANDIDATE != 'false' }}
+          tag_name: "v${{ env.RELEASE_VERSION }}"
+          files: archives/*
 
   commit:
     name: Commit and push patched fonts to the repo, finalize release
