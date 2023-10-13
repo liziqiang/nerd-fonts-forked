@@ -210,6 +210,12 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/senketsu03"><img class="lzy_img" data-src="https://avatars.githubusercontent.com/u/111694096?v=4?s=100" width="100px;" alt="senketsu03"/><br /><sub><b>senketsu03</b></sub></a><br /><a href="#translation-senketsu03" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sorashi"><img class="lzy_img" data-src="https://avatars.githubusercontent.com/u/6270283?v=4?s=100" width="100px;" alt="Dennis Pražák"/><br /><sub><b>Dennis Pražák</b></sub></a><br /><a href="https://github.com/ryanoasis/nerd-fonts/commits?author=sorashi" title="Code">💻</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://nilueps.net"><img class="lzy_img" data-src="https://avatars.githubusercontent.com/u/55964909?v=4?s=100" width="100px;" alt="Nicolas Epstein"/><br /><sub><b>Nicolas Epstein</b></sub></a><br /><a href="https://github.com/ryanoasis/nerd-fonts/commits?author=sqwxl" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/LeoniePhiline"><img class="lzy_img" data-src="https://avatars.githubusercontent.com/u/22329650?v=4?s=100" width="100px;" alt="LeoniePhiline"/><br /><sub><b>LeoniePhiline</b></sub></a><br /><a href="https://github.com/ryanoasis/nerd-fonts/issues?q=author%3ALeoniePhiline" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/frantisekhanzlikbl"><img class="lzy_img" data-src="https://avatars.githubusercontent.com/u/43645405?v=4?s=100" width="100px;" alt="František Hanzlík"/><br /><sub><b>František Hanzlík</b></sub></a><br /><a href="https://github.com/ryanoasis/nerd-fonts/commits?author=frantisekhanzlikbl" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/VitthalGund"><img class="lzy_img" data-src="https://avatars.githubusercontent.com/u/97181033?v=4?s=100" width="100px;" alt="Vitthal Popat Gund"/><br /><sub><b>Vitthal Popat Gund</b></sub></a><br /><a href="https://github.com/ryanoasis/nerd-fonts/commits?author=VitthalGund" title="Code">💻</a></td>
+    </tr>
   </tbody>
 </table>
 
