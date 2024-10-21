@@ -241,41 +241,9 @@ jobs:
             patched-fonts/${{ matrix.font }}
             archives/SHA*
 
-  release-font-patcher:
-    name: Archive font patcher and add to release
-    needs: [ setup-fonts-matrix, build ]
-
-    env:
-      GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      RELEASE_VERSION: ${{ needs.setup-fonts-matrix.outputs.rel_version }}
-      RELEASE_CANDIDATE: ${{ needs.setup-fonts-matrix.outputs.rel_candidate }}
-
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Bump version for source files
-        run: |
-          cd -- "$GITHUB_WORKSPACE/bin/scripts"
-          ./version-bump.sh "$RELEASE_VERSION"
-
-      - name: Archive font-patcher script for release
-        run: |
-          cd -- "$GITHUB_WORKSPACE/bin/scripts"
-          ./archive-font-patcher.sh
-
-      - name: Upload font-patcher archive for release
-        uses: softprops/action-gh-release@v2
-        if: needs.setup-fonts-matrix.outputs.rel_upload == 'true'
-        with:
-          draft: true
-          prerelease: ${{ env.RELEASE_CANDIDATE != 'false' }}
-          tag_name: "v${{ env.RELEASE_VERSION }}"
-          files: archives/*
-
   commit:
     name: Commit and push patched fonts to the repo, finalize release
-    needs: [ setup-fonts-matrix, build, release-font-patcher ]
+    needs: [ setup-fonts-matrix, build ]
     env:
       RELEASE_VERSION: ${{ needs.setup-fonts-matrix.outputs.rel_version }}
       RELEASE_CANDIDATE: ${{ needs.setup-fonts-matrix.outputs.rel_candidate }}
@@ -339,70 +307,6 @@ jobs:
           message: "[ci] Rebuild patched fonts"
           committer_name: GitHub Actions
           committer_email: 41898282+github-actions[bot]@users.noreply.github.com
-
-      - name: Generate fontconfig
-        run: |
-          cd -- "$GITHUB_WORKSPACE/bin/scripts"
-          ./generate-fontconfig.sh
-
-      - name: Commit fontconfig back to repo
-        uses: EndBug/add-and-commit@v9
-        with:
-          fetch: false
-          add: '10-nerd-font-symbols.conf'
-          message: "[ci] Regenerate fontconfig"
-          committer_name: GitHub Actions
-          committer_email: 41898282+github-actions[bot]@users.noreply.github.com
-
-      - name: Generate new CSS file and webfonts
-        run: |
-          sudo apt update -y -q
-          sudo apt install fontforge -y -q
-          cd -- "$GITHUB_WORKSPACE/bin/scripts"
-          ./generate-css.sh
-          ./generate-webfonts.sh
-
-      - name: Commit CSS back to repo
-        uses: EndBug/add-and-commit@v9
-        id: push_css
-        with:
-          fetch: false
-          add: "['css', 'glyphnames.json']"
-          message: "[ci] Regenerate CSS files"
-          committer_name: GitHub Actions
-          committer_email: 41898282+github-actions[bot]@users.noreply.github.com
-
-      - name: Deploy CSS to gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        if: steps.push_css.outputs.pushed
-        with:
-          folder: css
-          target-folder: _includes/css
-          commit-message: "[ci] Regenerate CSS files"
-          git-config-name: GitHub Actions
-          git-config-email: 41898282+github-actions[bot]@users.noreply.github.com
-          clean: false
-
-      - name: Deploy Cheat Sheet to gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        if: steps.push_css.outputs.pushed
-        with:
-          folder: temp
-          target-folder: _posts
-          commit-message: "[ci] Regenerate Cheat Sheet"
-          git-config-name: GitHub Actions
-          git-config-email: 41898282+github-actions[bot]@users.noreply.github.com
-          clean: false
-
-      - name: Deploy webfonts to gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: webfonts
-          target-folder: assets/fonts
-          commit-message: "[ci] Update webfonts"
-          git-config-name: GitHub Actions
-          git-config-email: 41898282+github-actions[bot]@users.noreply.github.com
-          clean: false
 
       - name: Adjust release tag to include previous commit
         uses: EndBug/latest-tag@v1
