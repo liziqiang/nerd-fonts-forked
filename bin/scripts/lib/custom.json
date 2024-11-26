@@ -1,0 +1,21 @@
+{
+  "fonts": [
+    {
+      "unpatchedName": "Monaco",
+      "patchedName": "Monaco",
+      "folderName": "Monaco",
+      "imagePreviewFont": "Monaco Nerd Font",
+      "linkPreviewFont": "monaco",
+      "description": "Monaco Nerd Font"
+    },
+    {
+      "unpatchedName": "MonacoLiga",
+      "patchedName": "MonacoLiga",
+      "folderName": "MonacoLiga",
+      "imagePreviewFont": "MonacoLiga Nerd Font",
+      "linkPreviewFont": "MonacoLiga",
+      "description": "MonacoLiga Nerd Font"
+    }
+  ]
+}
+  
